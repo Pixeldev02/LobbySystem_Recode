@@ -1,0 +1,8 @@
+name: Lobbysystem
+version: ${project.version}
+main: de.pixeldev02.lobbysystem.Lobbysystem
+
+commands:
+  set:
+  build:
+  secret:

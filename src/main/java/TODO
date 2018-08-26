@@ -1,0 +1,75 @@
+private String name;
+    private Rank rank;
+    private String ip;
+    private long firstlogin;
+    private long lastlogin;
+    private int coins;
+
+    public LobbyPlayer(String name, Rank rank, String ip, long firstlogin, long lastlogin, int coins) {
+        this.name = name;
+        this.rank = rank;
+        this.ip = ip;
+        this.firstlogin = firstlogin;
+        this.lastlogin = lastlogin;
+        this.coins = coins;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public long getFirstlogin() {
+        return firstlogin;
+    }
+
+    public long getLastlogin() {
+        return lastlogin;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public void saveUser(boolean insert) {
+        block1:
+        {
+            try {
+                if (insert) {
+                    PreparedStatement preparedStatement = MySQL.con.prepareStatement("INSERT INTO Spieler (Name,Rank) VALUES (?,?)");
+                    preparedStatement.setObject(1, this.getName());
+                    preparedStatement.setObject(2, this.getRank());
+                    preparedStatement.execute();
+                    preparedStatement.closeOnCompletion();
+                    break block1;
+                }
+
+                PreparedStatement preparedStatement = MySQL.con.prepareStatement("UPDATE Spieler SET Name = ?, Rank = ? WHERE Name = ?");
+                preparedStatement.setObject(1, this.getName());
+                preparedStatement.setObject(2, this.getRank());
+                preparedStatement.setObject(3, this.getName());
+                preparedStatement.execute();
+                preparedStatement.closeOnCompletion();
+            } catch (SQLException exc) {
+                exc.printStackTrace();
+                System.out.println(exc.getLocalizedMessage());
+
+            } finally {
+                if (MySQL.con != null) {
+                    try {
+                        MySQL.con.close();
+                    } catch (SQLException exc) {
+                        exc.printStackTrace();
+                        System.out.println(exc.getLocalizedMessage());
+                    }
+                }
+            }
+        }
+    }
