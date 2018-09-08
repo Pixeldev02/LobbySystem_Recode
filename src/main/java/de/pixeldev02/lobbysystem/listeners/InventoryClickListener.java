@@ -3,6 +3,7 @@ package de.pixeldev02.lobbysystem.listeners;
 import de.dytanic.cloudnet.api.CloudAPI;
 import de.pixeldev02.lobbysystem.Lobbysystem;
 import de.pixeldev02.lobbysystem.gadgets.GadgetItemRegister;
+import de.pixeldev02.lobbysystem.invetorys.Settings;
 import de.pixeldev02.lobbysystem.manager.SecretManager;
 import de.pixeldev02.lobbysystem.gadgets.GadgetItem;
 import de.pixeldev02.lobbysystem.gadgets.GadgetItemMain;
@@ -78,6 +79,8 @@ public class InventoryClickListener implements Listener {
                     } else if(e.getCurrentItem().getItemMeta().getDisplayName().equals("§7» §e§lEpicKnock §7«")) {
                         Navigator.openQuick("EpicKnock", p);
 
+                    } else if(e.getCurrentItem().getItemMeta().getDisplayName().equals("§7» §e§lTowerFight §7«")) {
+                        Navigator.openQuick("TowerFight", p);
                     }
                 }
             }
@@ -88,6 +91,22 @@ public class InventoryClickListener implements Listener {
                 if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8» §cZurück")) {
                     Navigator.openNavigatorInv(p);
                 }
+                if(e.getCurrentItem().getType() == Material.STAINED_CLAY && e.getCurrentItem().getItemMeta().getDisplayName().startsWith("§a§l")) {
+                    String type = e.getCurrentItem().getItemMeta().getDisplayName().replace("§a§l", "");
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    DataOutputStream dos = new DataOutputStream(baos);
+
+                    try {
+                        dos.writeUTF("Connect");
+                        dos.writeUTF(type);
+                        p.sendPluginMessage(Lobbysystem.getInstance(), "BungeeCord", baos.toByteArray());
+                        p.sendMessage(Data.prefix + "Du wirst jetzt auf den Server §a" + type + " §7verschoben.");
+                        baos.close();
+                        dos.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
             }
         }
 
@@ -95,6 +114,48 @@ public class InventoryClickListener implements Listener {
             if(e.getCurrentItem() != null) {
                 if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8» §cZurück")) {
                     Navigator.openNavigatorInv(p);
+                }
+                if(e.getCurrentItem().getType() == Material.STAINED_CLAY && e.getCurrentItem().getItemMeta().getDisplayName().startsWith("§a§l")) {
+                    Bukkit.broadcastMessage("asd");
+                    String type = e.getCurrentItem().getItemMeta().getDisplayName().replace("§a§l", "");
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    DataOutputStream dos = new DataOutputStream(baos);
+
+                    try {
+                        dos.writeUTF("Connect");
+                        dos.writeUTF(type);
+                        p.sendPluginMessage(Lobbysystem.getInstance(), "BungeeCord", baos.toByteArray());
+                        p.sendMessage(Data.prefix + "Du wirst jetzt auf den Server §a" + type + " §7verschoben.");
+                        baos.close();
+                        dos.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        if(e.getInventory().getName().equalsIgnoreCase(Inventorys.GUI.SERVERLIST.getName() + "TowerFight")) {
+            if(e.getCurrentItem() != null) {
+                if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8» §cZurück")) {
+                    Navigator.openNavigatorInv(p);
+                }
+                if(e.getCurrentItem().getType() == Material.STAINED_CLAY && e.getCurrentItem().getItemMeta().getDisplayName().startsWith("§a§l")) {
+                    Bukkit.broadcastMessage("asd");
+                    String type = e.getCurrentItem().getItemMeta().getDisplayName().replace("§a§l", "");
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    DataOutputStream dos = new DataOutputStream(baos);
+
+                    try {
+                        dos.writeUTF("Connect");
+                        dos.writeUTF(type);
+                        p.sendPluginMessage(Lobbysystem.getInstance(), "BungeeCord", baos.toByteArray());
+                        p.sendMessage(Data.prefix + "Du wirst jetzt auf den Server §a" + type + " §7verschoben.");
+                        baos.close();
+                        dos.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         }
@@ -132,7 +193,12 @@ public class InventoryClickListener implements Listener {
         if(e.getInventory().getName().equalsIgnoreCase(Inventorys.GUI.SETTINGS.getName())) {
             if(e.getCurrentItem() != null) {
                 if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8» §aGadgets §8«")) {
-                    Gadgets.openGadgets(p);                }
+                    Gadgets.openGadgets(p);
+                }
+
+                if(e.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("§8» §cEinstellungen §8«")) {
+                    Settings.openSettingsMenu(p);
+                }
             }
         }
 

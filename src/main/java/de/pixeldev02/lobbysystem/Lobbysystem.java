@@ -26,7 +26,7 @@ public final class Lobbysystem extends JavaPlugin {
     private Onlinetime onlinetimeManager;
     private MySQL mySQL;
     private LocationManager locationManager;
-    private RedisManager redisManager;
+    //private RedisManager redisManager;
     private ServerManager serverManager;
     private TeleportAnimation teleportManager;
     private QuickJoin quickJoinManager;
@@ -61,7 +61,7 @@ public final class Lobbysystem extends JavaPlugin {
         // Utils
         onlinetimeManager = new Onlinetime(this);
         locationManager = new LocationManager(this);
-        redisManager = new RedisManager(this);
+        //redisManager = new RedisManager(this);
         serverManager = new ServerManager(this);
         playerScoreboard = new PlayerScoreboardManager();
         teleportManager = new TeleportAnimation();
@@ -95,6 +95,7 @@ public final class Lobbysystem extends JavaPlugin {
         pm.registerEvents(new ChatListener(), this);
         pm.registerEvents(new HotbarListener(), this);
         pm.registerEvents(new ParticleListener(), this);
+        pm.registerEvents(new LoginListener(), this);
     }
 
     private void startScoreboardTask() {
@@ -150,9 +151,9 @@ public final class Lobbysystem extends JavaPlugin {
         return locationManager;
     }
 
-    public RedisManager getRedisManager() {
-        return redisManager;
-    }
+    //public RedisManager getRedisManager() {
+       // return redisManager;
+    //}
 
     public ServerManager getServerManager() {
         return serverManager;

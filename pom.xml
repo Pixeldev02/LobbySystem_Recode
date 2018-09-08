@@ -73,6 +73,10 @@
             <id>wesjd-repo</id>
             <url>https://nexus.wesjd.net/repository/thirdparty/</url>
         </repository>
+        <repository>
+            <id>cloudnet</id>
+            <url>https://cloudnetservice.eu/repositories/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -83,11 +87,18 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--- CloudNet-API for Bukkit and BungeeCord -->
         <dependency>
-            <groupId>net.epicjump</groupId>
-            <artifactId>CloudNet</artifactId>
-            <version>1.0</version>
+            <groupId>de.dytanic.cloudnet</groupId>
+            <artifactId>cloudnet-api-bridge</artifactId>
+            <version>2.1.9</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>de.dytanic.cloudnet</groupId>
+            <artifactId>cloudnet-core</artifactId>
+            <version>2.1.9</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Jedis -->

@@ -25,7 +25,6 @@ import org.bukkit.util.Vector;
 
 public class ProtectionListener implements Listener  {
 
-
    @EventHandler
     public void onDamage(final EntityDamageEvent e) {
         e.setCancelled(true);
@@ -81,15 +80,14 @@ public class ProtectionListener implements Listener  {
         }
     }
 
-
     @EventHandler
     public void onCraft(final CraftItemEvent e) {
         e.setCancelled(true);
     }
 
-
     @EventHandler
     public void onInteract(final PlayerInteractEvent e) {
+       if(e.getItem() == null) return;
         if(BuildManager.builders.contains(e.getPlayer()) || e.getItem().getType() == Material.FISHING_ROD) {
             e.setCancelled(false);
         } else {

@@ -36,9 +36,9 @@
     <orderEntry type="library" name="Maven: redis.clients:jedis:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.Discord4J:Discord4J:2.10.1" level="project" />
     <orderEntry type="library" name="Maven: org.bukkit:CraftBukkit:1.8.8-R0.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="GameAPI-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: de.pixeldev02:gameapi:1.0" level="project" />
     <orderEntry type="library" name="Maven: net.epicjump:spigot:1.8" level="project" />
     <orderEntry type="library" name="Maven: net.wesjd:anvilgui:1.1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: de.dytanic.cloudnet:cloudnet-api-bridge:2.1.9" level="project" />
+    <orderEntry type="library" name="gameapi-1.0-SNAPSHOT" level="project" />
   </component>
 </module>

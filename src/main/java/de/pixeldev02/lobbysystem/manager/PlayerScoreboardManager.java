@@ -3,11 +3,13 @@ package de.pixeldev02.lobbysystem.manager;
 import de.dytanic.cloudnet.api.CloudAPI;
 import de.dytanic.cloudnet.lib.player.CloudPlayer;
 import de.dytanic.cloudnet.lib.player.permission.PermissionGroup;
+import de.pixeldev02.gameapi.api.CoinsAPI;
 import de.pixeldev02.lobbysystem.Lobbysystem;
 import de.pixeldev02.lobbysystem.mysql.PlayerSecretSQL;
 import de.pixeldev02.lobbysystem.mysql.SecretSQL;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -48,6 +50,8 @@ public class PlayerScoreboardManager {
             };
 
     public void setPlayerBoard(Player p) {
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(p.getUniqueId());
+
         p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
         scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective obj = scoreboard.registerNewObjective("aaa", "bbb");
@@ -76,8 +80,6 @@ public class PlayerScoreboardManager {
         obj.getScore(ChatColor.YELLOW.toString()).setScore(2);
         obj.getScore(ChatColor.DARK_GRAY.toString()).setScore(1);
 
-
-
         CloudPlayer cloudPlayer = CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId());
         PermissionGroup permissionGroup = CloudAPI.getInstance().getPermissionGroup(cloudPlayer.getPermissionEntity().getGroups().iterator().next().getGroup());
         String prefix = permissionGroup.getPrefix();
@@ -92,7 +94,7 @@ public class PlayerScoreboardManager {
         OnlineZeit.addEntry(ChatColor.MAGIC.toString());
 
         Team Coins = scoreboard.registerNewTeam("coins");
-        Coins.setPrefix("§8» §e" /*+ CoinsAPI.getCoins(p)*/); //TODO COINS
+        Coins.setPrefix("§8» §e" + CoinsAPI.getCoins(offlinePlayer)); //TODO COINS
         Coins.addEntry(ChatColor.GOLD.toString());
 
         Team Server = scoreboard.registerNewTeam("server");
@@ -226,6 +228,8 @@ public class PlayerScoreboardManager {
     }
 
     public void updateScoreboard(final Player p, Scoreboard sb) {
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(p.getUniqueId());
+
         CloudPlayer cloudPlayer = CloudAPI.getInstance().getOnlinePlayer(p.getUniqueId());
         PermissionGroup permissionGroup = CloudAPI.getInstance().getPermissionGroup(cloudPlayer.getPermissionEntity().getGroups().iterator().next().getGroup());
         String prefix = permissionGroup.getPrefix();
@@ -237,7 +241,7 @@ public class PlayerScoreboardManager {
         OnlineZeit.setPrefix("§8» §b" + Lobbysystem.getInstance().getOnlinetimeManager().getPlayerOnlineTime(p));
 
         Team Coins = sb.getTeam("coins");
-        Coins.setPrefix("§8» §e" /*+ CoinsAPI.getCoins(p)*/); //TODO COINS
+        Coins.setPrefix("§8» §e" + CoinsAPI.getCoins(offlinePlayer)); //TODO COINS
 
         Team Server = sb.getTeam("server");
         Server.setPrefix("§8» §a" + Lobbysystem.getInstance().getServerManager().getPlayerServerName(p));

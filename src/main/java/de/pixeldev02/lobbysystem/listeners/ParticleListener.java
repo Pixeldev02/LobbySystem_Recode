@@ -30,7 +30,6 @@ public class ParticleListener implements Listener {
                 double t = Math.PI/4;
                 Location loc = p.getLocation();
                 public void run(){
-                    Bukkit.broadcastMessage("a");
                     t = t + 0.1*Math.PI;
                     for (double theta = 0; theta <= 2*Math.PI; theta = theta + Math.PI/32){
                         double x = t*cos(theta);

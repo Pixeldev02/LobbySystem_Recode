@@ -144,4 +144,29 @@ public class ServerManager {
         }
         return 0;
     }
+
+    public int getTowerFightCount() {
+        int onlinecount = 0;
+
+        for(ServerInfo towerfight : CloudAPI.getInstance().getServers("TowerFight")) {
+            servername.add(towerfight.getServiceId().getServerId());
+        }
+
+        Collections.sort(servername);
+
+        for(String st : servername) {
+            ServerInfo info = null;
+
+            for(ServerInfo list : CloudAPI.getInstance().getServers("TowerFight")) {
+                if(list.getServiceId().getServerId().equalsIgnoreCase(st)) {
+                    info = list;
+                }
+            }
+
+            if(info != null && st.startsWith("TowerFight")) {
+                return info.getOnlineCount();
+            }
+        }
+        return 0;
+    }
 }

@@ -26,13 +26,14 @@ public class Navigator  {
         final ItemStack Spawn = new ItemManager(Material.MAGMA_CREAM).setDisplayName("§e§lSpawn").build();
         final ItemStack Bedwars = new ItemManager(Material.BED).setAmount(Lobbysystem.getInstance().getServerManager().getBedwarsCount()).setDisplayName("§7» §e§lBedwars §7«").addLoreLine("§7§m------------------------").addLoreLine("").addLoreLine("§7» §a§lLinkslick §8× §eTeleportieren").addLoreLine("§7» §a§lRechtsklick §8× §eServerGUI").addLoreLine("").addLoreLine("§7§m------------------------").build();
         final ItemStack EpicKnock = new ItemManager(Material.STICK).setAmount(Lobbysystem.getInstance().getServerManager().getEpicKnockCount()).setDisplayName("§7» §e§lEpicKnock §7«").addLoreLine("§7§m------------------------").addLoreLine("").addLoreLine("§7» §a§lLinkslick §8× §eTeleportieren").addLoreLine("§7» §a§lRechtsklick §8× §eServerGUI").addLoreLine("").addLoreLine("§7§m------------------------").build();
+        final ItemStack TowerFight = new ItemManager(Material.COBBLE_WALL).setAmount(Lobbysystem.getInstance().getServerManager().getTowerFightCount()).setDisplayName("§7» §e§lTowerFight §7«").addLoreLine("§7§m------------------------").addLoreLine("").addLoreLine("§7» §a§lLinkslick §8× §eTeleportieren").addLoreLine("§7» §a§lRechtsklick §8× §eServerGUI").addLoreLine("").addLoreLine("§7§m------------------------").build();
         final ItemStack CoomingSoon = new ItemManager(Material.BARRIER).setDisplayName("§7» §e§lKommt bald §7«").build();
         final ItemStack Team = new ItemManager(SkullCacher.getHead(Bukkit.getOfflinePlayer(UUID.fromString("e349c0dc-ec01-4441-98a5-62e7af93482c")))).setDisplayName("§7» §c§lTeam §7«").build();
         final ItemStack ChestOpening = new ItemManager(Material.ENDER_CHEST).setDisplayName("§7» §5§lChest Opening §7«").build();
 
         inventoryCreator.setItem(12, EpicKnock);
         inventoryCreator.setItem(14, Bedwars);
-        inventoryCreator.setItem(19, CoomingSoon);
+        inventoryCreator.setItem(19, TowerFight);
         inventoryCreator.setItem(22, Spawn);
         inventoryCreator.setItem(25, CoomingSoon);
         inventoryCreator.setItem(30, Team);
